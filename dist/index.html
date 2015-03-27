@@ -1,23 +1,146 @@
 <!DOCTYPE html>
-<!-- tell angular this is chromeTabsApp -->
-<html lang="en" ng-app="chromeTabsApp">
+<html lang="en" ng-app="CineOsApp">
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Web App Skeleton</title>
+		<title>CineOS</title>
 		<!-- include the Bootstrap CSS -->
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 		<!-- include our compiled CSS -->
 		<link href="css/style.css" rel="stylesheet">
+		<!-- include fonts -->
+		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 	</head>
-	<!-- this will be the only controller AppCtrl -->
-	<body ng-controller="AppCtrl">
-		
+	<body ng-controller="ReservationController">
+		<section id="welcome-section">
+			<h1>Welcome.</h1>
+			<div id="text-splash" class="vertical-center text-center">
+				<h2>This is a presentation for the</h2>
+				<h1>'Place a registration'</h1>
+				<h2>use-case for the MAS project.</h2>
+				<div 	ng-click="scrollToUserRegistration()" 
+						class="center-block circular-button-pastel-pink" 
+						style="margin-top:50px">
+					<i 	id="down-chevron" 
+						class="glyphicon glyphicon-menu-down gi-4x"></i>
+				</div>
+			</div>
+		</section>
+		<section id="user-credentials-section">
+			<h1>So - who are you, again?</h1>
+			<div class="vertical-center" style="width: 100%">
+				<div class="container .vertical-center">
+					<div class="row">
+						<div class="col-lg-offset-4 col-lg-4 col-xs-12">
+							<form>
+								<div class="form-group">
+									<input 	id="userEmailField" 
+											type="email" 
+											class="form-control" 
+											placeholder="What's your email?">
+								</div>
+								<div class="form-group">
+									<input 	id="userPasswordField" 
+											type="password" 
+											class="form-control" 
+											placeholder="And your password?">
+								</div>
+								<button type="button"
+										ng-click="userCredentialsEntered()" 
+										class="btn btn-default btn-block">
+										That's me
+								</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</section>
+		<section id="region-cinema-section">
+			<h1>Now choose the region...</h1>
+			<div class="container">
+				<form>
+					<div class="row">
+						<div class="col-lg-offset-2 col-lg-4">
+							<h3>Region</h3>
+							<select id="region-select"
+								class="form-control"
+								ng-change="regionSelected()"
+								ng-init="selectedRegion = regions[0]"
+								ng-model="selectedRegion"
+								ng-options="region as region.regionName for region in regions">
+							</select>
+						</div>
+						<div class="col-lg-4">
+							<h3>Cinema</h3>
+							<select id="cinema-select"
+								class="form-control"
+								name="cinema-select"
+								ng-change="cinemaSelected()"
+								ng-model="selectedCinema"
+								ng-options="cinema as cinema.cinemaName for cinema in cinemas| filterCinemasInSelectedRegion:selectedRegion">
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div id="cinema-details" class="col-lg-12 text-center" style="display:none;">
+							<h2>So you chose</h2>
+							<strong ng-bind="selectedCinema.cinemaName"></strong>
+							<address>
+								{{selectedCinema.address.city}}
+								{{selectedCinema.address.street}}
+							</address>
+						</div>
+					</div>
+					<div class="row">
+						<div id="cinema-selection-yes-no-buttons" style="display:none;">
+							<h2 class="text-center">Is that right?</h2>
+							<div class="col-lg-offset-4 col-lg-2">
+								<button id="no-button"
+										ng-click="cinemaSelectionNo()"
+										type="reset" 
+										class="btn btn-default btn-block">
+										No
+								</button>
+							</div>
+							<div class="col-lg-2">
+								<button id="yes-button"
+										ng-click="cinemaSelectionYes()" 
+										type="reset" 
+										class="btn btn-default btn-block">
+										Yes
+								</button>
+							</div>
+
+						</div>	
+					</div>
+				</form>
+			</div>
+		</section>
+		<section id="film-selection-section">
+			<h1>What film would you like to see?</h1>
+		</section>
+		<section id="projection-section">
+			<h1>Now choose a projection.</h1>
+		</section>
+		<section id="seat-booking-section">
+			<h1>Which seats would you like too book?</h1>
+		</section>
+		<section id="confirmation-section">
+			<h1>Is everything allright?</h1>
+		</section>
+		<section id="footer-section">
+			<h1>This has been a presentation</h1>
+			<h2>For MAS final project evaluation</h2>
+		</section>
 		<!-- include the JavaScript dependencies: jQuery, AngularJS, AngularUI Bootstrap -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap.min.js"></script>
-		<scrit src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+		<script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.0/jquery.scrollTo.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 		<!-- include our JavaScript -->
 		<script src="js/app.js"></script>
 	</body>

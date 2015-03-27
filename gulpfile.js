@@ -61,7 +61,6 @@ gulp.task('copy-html', function() {
 /* Watch these files for changes and run the task on update */
 gulp.task('watch', function() {
 
-
     gulp.watch(input.javascript, ['jshint', 'build-js']);
     gulp.watch(input.sass, ['build-css']);
     gulp.watch(input.html, ['copy-html']);
