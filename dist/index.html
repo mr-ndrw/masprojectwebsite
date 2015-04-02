@@ -8,6 +8,7 @@
 		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 		<!-- include our compiled CSS -->
 		<link href="css/style.css" rel="stylesheet">
+		<link type="text/css" href="css/jquery.seat-charts.css" rel="stylesheet">
 		<!-- include fonts -->
 		<link href='http://fonts.googleapis.com/css?family=Lato:100,400' rel='stylesheet' type='text/css'>
 	</head>
@@ -18,11 +19,11 @@
 				<h2>This is a presentation for the</h2>
 				<h1>'Place a registration'</h1>
 				<h2>use-case for the MAS project.</h2>
-				<div 	ng-click="scrollToUserRegistration()" 
-						class="center-block circular-button-pastel-pink" 
-						style="margin-top:50px">
-					<i 	id="down-chevron" 
-						class="glyphicon glyphicon-menu-down gi-4x"></i>
+				<div 	ng-click="scrollToUserRegistration()"
+					class="center-block circular-button-pastel-pink"
+					style="margin-top:50px">
+					<i 	id="down-chevron"
+					class="glyphicon glyphicon-menu-down gi-4x"></i>
 				</div>
 			</div>
 		</section>
@@ -34,21 +35,21 @@
 						<div class="col-lg-offset-4 col-lg-4 col-xs-12">
 							<form>
 								<div class="form-group">
-									<input 	id="userEmailField" 
-											type="email" 
-											class="form-control" 
-											placeholder="What's your email?">
+									<input 	id="userEmailField"
+									type="email"
+									class="form-control"
+									placeholder="What's your email?">
 								</div>
 								<div class="form-group">
-									<input 	id="userPasswordField" 
-											type="password" 
-											class="form-control" 
-											placeholder="And your password?">
+									<input 	id="userPasswordField"
+									type="password"
+									class="form-control"
+									placeholder="And your password?">
 								</div>
 								<button type="button"
-										ng-click="userCredentialsEntered()" 
-										class="btn btn-default btn-block">
-										That's me
+								ng-click="userCredentialsEntered()"
+								class="btn btn-default btn-block">
+								That's me
 								</button>
 							</form>
 						</div>
@@ -58,7 +59,7 @@
 			
 		</section>
 		<section id="region-cinema-section">
-			<h1>Now choose the region...</h1>
+			<h1>Now choose the region... Please please, choose the region, please!!!</h1>
 			<div class="container">
 				<form>
 					<div class="row">
@@ -98,34 +99,62 @@
 							<h2 class="text-center">Is that right?</h2>
 							<div class="col-lg-offset-4 col-lg-2">
 								<button id="no-button"
-										ng-click="cinemaSelectionNo()"
-										type="reset" 
-										class="btn btn-default btn-block">
-										No
+								ng-click="cinemaSelectionNo()"
+								type="reset"
+								class="btn btn-default btn-block">
+								No
 								</button>
 							</div>
 							<div class="col-lg-2">
 								<button id="yes-button"
-										ng-click="cinemaSelectionYes()" 
-										type="reset" 
-										class="btn btn-default btn-block">
-										Yes
+								ng-click="cinemaSelectionYes()"
+								type="reset"
+								class="btn btn-default btn-block">
+								Yes
 								</button>
 							</div>
-
-						</div>	
+						</div>
 					</div>
 				</form>
 			</div>
 		</section>
 		<section id="film-selection-section">
 			<h1>What film would you like to see?</h1>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-4">
+						<div id="filmsList">
+							<div class="panel panel-default ripple"
+								 ng-repeat="film in films"
+									data-ripple-color="#faf0e6">
+								<div class="panel-body">
+									<h4>{{ film.title }} <small>{{ film.director }}</small></h4>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
+
+					</div>
+				</div>
+			</div>
 		</section>
 		<section id="projection-section">
 			<h1>Now choose a projection.</h1>
 		</section>
 		<section id="seat-booking-section">
 			<h1>Which seats would you like too book?</h1>
+			<h2 class="text-center">Screen</h2>
+			<hr style="border-top:5px solid #eee">
+			<div class="container">
+				<div class="col-lg-offset-2 col-lg-8">
+					<div id="seat-map">
+					</div>
+				</div>
+				
+			</div>
 		</section>
 		<section id="confirmation-section">
 			<h1>Is everything allright?</h1>
